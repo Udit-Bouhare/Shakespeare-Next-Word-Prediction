@@ -23,7 +23,7 @@ class LSTMModel(nn.Module):
 # Load saved PyTorch model once
 @st.cache_resource
 def load_lstm_model():
-    checkpoint = torch.load("lstm_checkpoint.pth", weights_only=True) 
+    checkpoint = torch.load("lstm_checkpoint.pth",map_location="cpu",weights_only=True)
     model = LSTMModel(vocab_size=checkpoint["vocab_size"]) 
     model.load_state_dict(checkpoint["model_state_dict"]) 
     model.eval()
